@@ -2,11 +2,12 @@ import express from "express"
 import mongoose, { mongo } from "mongoose"
 import bodyParser from "body-parser"
 import jwt from "jsonwebtoken"
+import cors from "cors"
 
 
 const app = express()
-app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(cors());
+app.use(express.json())
 mongoose
     .connect("mongodb+srv://nitish:nitish123@cluster0.ykw3t8y.mongodb.net/?retryWrites=true&w=majority&appName=VideoCall")
     .then(() => console.log("Connected to DB"))
@@ -30,7 +31,7 @@ app.post("/signup", async (req, res) => {
     try {
         const check = await Users.findOne({ email: req.body.email })
         if (check) {
-            res.json({ succes: false, error: "User already exists" })
+            res.json({ succes: false, error: "User already exists, please try Login" })
         } else {
             const user = new Users({
                 email: req.body.email,
@@ -40,7 +41,7 @@ app.post("/signup", async (req, res) => {
 
             const data = {
                 user: {
-                    email:req.body.email
+                    email: req.body.email
                 }
             }
             const token = jwt.sign(data, "secret_videocall")
@@ -50,7 +51,26 @@ app.post("/signup", async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-})
+});
+
+app.post("/login", async (req, res) => {
+    const user = await Users.findOne({ email: req.body.email });
+    if (user) {
+        if (user.password === req.body.password) {
+            const data = {
+                user: {
+                    email: req.body.email
+                }
+            }
+            const token = jwt.sign(data, "secret_videocall")
+            res.json({ success: true, token })
+        } else {
+            res.json({ succes: false, error: "Incorrect password" })
+        }
+    } else {
+        res.json({ succes: false, error: "No such user registered,please try signup" })
+    }
+});
 
 app.listen(4000, (req, res) => {
     console.log(`Server running on ${"http://loclahost:4000/"}`)

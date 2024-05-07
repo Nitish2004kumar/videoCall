@@ -64,3 +64,16 @@ form{
     height: 3rem;
     margin-bottom: 2rem;
 }
+.here{
+  color: blue;
+  text-decoration: underline;
+}
+.here:hover{
+  cursor: pointer;
+}
+.menu-setter{
+  margin-top: 1rem;
+}
+button{
+  max-width: 13rem;
+}
