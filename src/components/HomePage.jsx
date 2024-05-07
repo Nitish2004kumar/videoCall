@@ -16,28 +16,6 @@ const HomePage = () => {
         }
     }
     return (
-        //     <form onSubmit={submitHandler}>
-        //         <label htmlFor="username">Username : </label>
-        //         <input
-        //             value={userName}
-        //             onChange={(e) => setUserName(e.target.value)}
-        //             type="text"
-        //             id="username"
-        //             placeholder="Enter your name..."
-        //         />
-        //         <br />
-        //         <label htmlFor="password">Password : </label>
-        //         <input
-        //             value={password}
-        //             onChange={(e) => setPassword(e.target.value)}
-        //             type="password"
-        //             id="password"
-        //             placeholder="Enter your password..."
-        //         />
-        //         <br />
-        //         <button type="submit">Join</button>
-        // </form>
-
         <main class="form-signin">
             <form onSubmit={submitHandler}>
                 <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
