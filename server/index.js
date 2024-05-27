@@ -13,7 +13,7 @@ dotenv.config()
 
 app.use(
     cors({
-        origin: ["video-call-client-seven.vercel.app"],
+        origin: [""],
         methods: ["POST", "GET"],
         credentials: true,
     })
