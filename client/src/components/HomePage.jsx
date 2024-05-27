@@ -13,7 +13,7 @@ const HomePage = () => {
 
     const signup = async () => {
         try {
-            const response = await axios.post("http://localhost:4000/signup", { email: email, password: password })
+            const response = await axios.post("video-call-server-pink.vercel.app/signup", { email: email, password: password })
             const data = response.data
             console.log(data)
             if (data.error) {
@@ -33,7 +33,7 @@ const HomePage = () => {
 
     const login = async () => {
         try {
-            const response = await axios.post("http://localhost:4000/login", { email: email, password: password })
+            const response = await axios.post("video-call-server-pink.vercel.app/login", { email: email, password: password })
             const data = response.data
             console.log(data)
             if (data.error) {

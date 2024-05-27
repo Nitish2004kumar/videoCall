@@ -11,6 +11,14 @@ app.use(cors())
 app.use(express.json())
 dotenv.config()
 
+app.use(
+    cors({
+        origin: ["video-call-client-seven.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true,
+    })
+)
+
 mongoose
     .connect("mongodb+srv://nitish:nitish123@cluster0.ykw3t8y.mongodb.net/?retryWrites=true&w=majority&appName=VideoCall")
     .then(() => console.log("Connected to DB"))
